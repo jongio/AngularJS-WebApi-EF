@@ -1,0 +1,12 @@
+Jon Gallant
+jongallant.com
+@jongallant
+
+A very simple CRUD grid with...
+
+AngularJS
+WebApi
+Entity Framework (Code First)
+Bootstrap
+Font Awesome
+Toastr

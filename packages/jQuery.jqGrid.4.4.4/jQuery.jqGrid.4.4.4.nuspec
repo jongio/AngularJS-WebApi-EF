@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>jQuery.jqGrid</id>
+    <version>4.4.4</version>
+    <title>jQuery.jqGrid</title>
+    <authors>Trirand</authors>
+    <owners>Trirand</owners>
+    <projectUrl>http://www.trirand.com/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>jqGrid is an Ajax-enabled JavaScript control that provides solutions for representing and manipulating tabular data on the web.</description>
+    <releaseNotes />
+    <copyright />
+    <language>en-US</language>
+    <dependencies>
+      <dependency id="jQuery" version="1.9.1" />
+      <dependency id="jQuery.UI.Combined" version="1.10.0" />
+    </dependencies>
+    <references />
+  </metadata>
+</package>
