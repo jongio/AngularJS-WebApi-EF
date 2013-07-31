@@ -13,7 +13,7 @@ namespace AngularJS_WebApi_EF
 
 
             bundles.Add(new ScriptBundle("~/bundles/angular").Include(
-                        "~/Scripts/angular.js"));
+                        "~/Scripts/angular.js", "~/Scripts/angular-resource.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/toastr").Include(
                         "~/Scripts/toastr.js"));
