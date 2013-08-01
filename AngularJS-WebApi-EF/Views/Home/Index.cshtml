@@ -2,16 +2,20 @@
 <html ng-app="app">
 <head>
     <title>AngularJS-WebApi-EF</title>
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/angular")
-    @Scripts.Render("~/bundles/toastr")
-    @Scripts.Render("~/bundles/bootstrap")
     @Styles.Render("~/content/bootstrap")
     @Styles.Render("~/content/toastr")
     @Styles.Render("~/content/css")
 </head>
 <body>
-    <div crud-grid></div>
+    <h1>People</h1>
+    <div crud-grid table-name='person'></div>
+    <h1>Places</h1>
+    <div crud-grid table-name='place'></div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/angular")
+    @Scripts.Render("~/bundles/toastr")
+    @Scripts.Render("~/bundles/bootstrap")
+
 </body>
 </html>
 

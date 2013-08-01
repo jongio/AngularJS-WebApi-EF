@@ -2,54 +2,56 @@
     return {
         restrict: 'A',
         replace: false,
+        scope: true,
         templateUrl: '/Scripts/App/Directives/Templates/crud-grid-directive-template.html',
-        controller: function ($scope, personFactory, notificationFactory) {
-            $scope.people = [];
+        controller: function ($scope, $element, $attrs, crudGridDataFactory, notificationFactory) {
+            $scope.objects = [];
             $scope.addMode = false;
 
             $scope.toggleAddMode = function () {
                 $scope.addMode = !$scope.addMode;
             };
 
-            $scope.toggleEditMode = function (person) {
-                person.editMode = !person.editMode;
+            $scope.toggleEditMode = function (object) {
+                object.editMode = !object.editMode;
             };
 
             var successCallback = function (e, cb) {
                 notificationFactory.success();
-                $scope.getPeople(cb);
+                $scope.getData(cb);
             };
 
             var successPostCallback = function (e) {
                 successCallback(e, function () {
                     $scope.toggleAddMode();
-                    $scope.person = {};
+                    $scope.object = {};
                 });
             };
 
             var errorCallback = function (e) {
-                notificationFactory.error(e.data.Message);
+                notificationFactory.error(e.object.Message);
             };
 
-            $scope.addPerson = function () {
-                personFactory.save($scope.person, successPostCallback, errorCallback);
+            $scope.addObject = function () {
+                crudGridDataFactory($attrs.tableName).save($scope.object, successPostCallback, errorCallback);
             };
 
-            $scope.deletePerson = function (person) {
-                personFactory.delete({ id: person.Id }, successCallback, errorCallback);
+            $scope.deleteObject = function (object) {
+                crudGridDataFactory($attrs.tableName).delete({ id: object.Id }, successCallback, errorCallback);
             };
 
-            $scope.updatePerson = function (person) {
-                personFactory.update({ id: person.Id }, person, successCallback, errorCallback);
+            $scope.updateObject = function (object) {
+                crudGridDataFactory($attrs.tableName).update({ id: object.Id }, object, successCallback, errorCallback);
             };
 
-            $scope.getPeople = function (cb) {
-                personFactory.query(function (data) {
-                    $scope.people = data;
+            $scope.getData = function (cb) {
+                crudGridDataFactory($attrs.tableName).query(function (data) {
+                    $scope.objects = data;
                     if (cb) cb();
                 });
             };
-            $scope.getPeople();
+
+            $scope.getData();
         }
     }
 });

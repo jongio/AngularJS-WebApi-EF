@@ -8,45 +8,46 @@ using System.Net;
 using System.Net.Http;
 using System.Web;
 using System.Web.Http;
+using AngularJS_WebApi_EF.Models;
 
-namespace AngularJS_WebApi_EF.Models
+namespace AngularJS_WebApi_EF.Controllers
 {
-    public class PersonController : ApiController
+    public class PlaceController : ApiController
     {
         private PersonContext db = new PersonContext();
 
-        // GET api/Person
-        public IEnumerable<Person> GetPeople()
+        // GET api/Place
+        public IEnumerable<Place> GetPlaces()
         {
-            return db.People.AsEnumerable();
+            return db.Places.AsEnumerable();
         }
 
-        // GET api/Person/5
-        public Person GetPerson(int id)
+        // GET api/Place/5
+        public Place GetPlace(int id)
         {
-            Person person = db.People.Find(id);
-            if (person == null)
+            Place place = db.Places.Find(id);
+            if (place == null)
             {
                 throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.NotFound));
             }
 
-            return person;
+            return place;
         }
 
-        // PUT api/Person/5
-        public HttpResponseMessage PutPerson(int id, Person person)
+        // PUT api/Place/5
+        public HttpResponseMessage PutPlace(int id, Place place)
         {
             if (!ModelState.IsValid)
             {
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
             }
 
-            if (id != person.Id)
+            if (id != place.Id)
             {
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
             }
 
-            db.Entry(person).State = EntityState.Modified;
+            db.Entry(place).State = EntityState.Modified;
 
             try
             {
@@ -60,16 +61,16 @@ namespace AngularJS_WebApi_EF.Models
             return Request.CreateResponse(HttpStatusCode.OK);
         }
 
-        // POST api/Person
-        public HttpResponseMessage PostPerson(Person person)
+        // POST api/Place
+        public HttpResponseMessage PostPlace(Place place)
         {
             if (ModelState.IsValid)
             {
-                db.People.Add(person);
+                db.Places.Add(place);
                 db.SaveChanges();
 
-                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, person);
-                response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = person.Id }));
+                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, place);
+                response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = place.Id }));
                 return response;
             }
             else
@@ -78,16 +79,16 @@ namespace AngularJS_WebApi_EF.Models
             }
         }
 
-        // DELETE api/Person/5
-        public HttpResponseMessage DeletePerson(int id)
+        // DELETE api/Place/5
+        public HttpResponseMessage DeletePlace(int id)
         {
-            Person person = db.People.Find(id);
-            if (person == null)
+            Place place = db.Places.Find(id);
+            if (place == null)
             {
                 return Request.CreateResponse(HttpStatusCode.NotFound);
             }
 
-            db.People.Remove(person);
+            db.Places.Remove(place);
 
             try
             {
@@ -98,7 +99,7 @@ namespace AngularJS_WebApi_EF.Models
                 return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
             }
 
-            return Request.CreateResponse(HttpStatusCode.OK, person);
+            return Request.CreateResponse(HttpStatusCode.OK, place);
         }
 
         protected override void Dispose(bool disposing)

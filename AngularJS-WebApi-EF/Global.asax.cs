@@ -23,8 +23,6 @@ namespace AngularJS_WebApi_EF
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-
-            Database.SetInitializer<Models.PersonContext>(new CreateDatabaseIfNotExists<Models.PersonContext>());
         }
     }
 }

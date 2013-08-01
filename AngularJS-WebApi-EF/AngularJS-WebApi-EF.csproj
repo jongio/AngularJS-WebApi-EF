@@ -145,12 +145,14 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PlaceController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Place.cs" />
     <Compile Include="Models\Person.cs" />
     <Compile Include="Models\PersonContext.cs" />
-    <Compile Include="Models\PersonController.cs" />
+    <Compile Include="Controllers\PersonController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -253,7 +255,7 @@
     <Content Include="Scripts\App\Directives\crud-grid-directive.js" />
     <Content Include="Scripts\App\Directives\Templates\crud-grid-directive-template.html" />
     <Content Include="Scripts\App\Services\notification-factory.js" />
-    <Content Include="Scripts\App\Services\person-factory.js" />
+    <Content Include="Scripts\App\Directives\Services\crud-grid-data-factory.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\i18n\angular-locale_af-na.js" />

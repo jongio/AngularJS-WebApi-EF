@@ -10,35 +10,35 @@
         <td>
             <div class="btn-toolbar">
                 <div class="btn-group">
-                    <i class="btn icon-save" ng-click="addPerson()"></i>
+                    <i class="btn icon-save" ng-click="addObject()"></i>
                     <i class="btn icon-remove" ng-click="toggleAddMode()"></i>
                 </div>
             </div>
         </td>
         <td></td>
         <td>
-            <input ng-model="person.Name" />
+            <input ng-model="object.Name" />
         </td>
     </tr>
-    <tr ng-repeat="person in people | orderBy:'Id':true">
+    <tr ng-repeat="object in objects | orderBy:'Id':true">
         <td>
-            <div class="btn-toolbar" ng-show="person.editMode == null || person.editMode == false">
+            <div class="btn-toolbar" ng-show="object.editMode == null || object.editMode == false">
                 <div class="btn-group">
-                    <i class="btn icon-edit" ng-click="toggleEditMode(person)"></i>
-                    <i class="btn icon-trash" ng-click="deletePerson(person)"></i>
+                    <i class="btn icon-edit" ng-click="toggleEditMode(object)"></i>
+                    <i class="btn icon-trash" ng-click="deleteObject(object)"></i>
                 </div>
             </div>
-            <div class="btn-toolbar" ng-show="person.editMode == true">
+            <div class="btn-toolbar" ng-show="object.editMode == true">
                 <div class="btn-group">
-                    <i class="btn icon-save" ng-click="updatePerson(person)"></i>
-                    <i class="btn icon-remove" ng-click="toggleEditMode(person)"></i>
+                    <i class="btn icon-save" ng-click="updateObject(object)"></i>
+                    <i class="btn icon-remove" ng-click="toggleEditMode(object)"></i>
                 </div>
             </div>
         </td>
-        <td>{{person.Id}}</td>
+        <td>{{object.Id}}</td>
         <td>
-            <span ng-show="person.editMode == null || person.editMode == false">{{person.Name}}</span>
-            <input ng-model="person.Name" ng-show="person.editMode == true" />
+            <span ng-show="object.editMode == null || object.editMode == false">{{object.Name}}</span>
+            <input ng-model="object.Name" ng-show="object.editMode == true" />
         </td>
     </tr>
 </table>
