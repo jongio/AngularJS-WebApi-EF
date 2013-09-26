@@ -8,6 +8,7 @@
             function ($scope, $element, $attrs, crudGridDataFactory, notificationFactory) {
                 $scope.objects = [];
                 $scope.addMode = false;
+                $scope.orderBy = { field: 'Name', asc: true };
 
                 $scope.toggleAddMode = function () {
                     $scope.addMode = !$scope.addMode;
@@ -30,7 +31,7 @@
                 };
 
                 var errorCallback = function (e) {
-                    notificationFactory.error(e.object.Message);
+                    notificationFactory.error(e.data.ExceptionMessage);
                 };
 
                 $scope.addObject = function () {
@@ -51,6 +52,11 @@
                         if (cb) cb();
                     });
                 };
+
+                $scope.setOrderBy = function (field) {
+                    var asc = $scope.orderBy.field === field ? !$scope.orderBy.asc : true;
+                    $scope.orderBy = { field: field, asc: asc };
+                }
 
                 $scope.getData();
             }]

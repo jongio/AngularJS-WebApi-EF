@@ -1,0 +1,4 @@
+﻿table.crud-grid th:hover:not(:first-child) {
+    cursor: pointer;
+}
+

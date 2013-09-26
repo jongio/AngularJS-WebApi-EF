@@ -34,6 +34,9 @@ namespace AngularJS_WebApi_EF
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/site.css"));
+            
+            bundles.Add(new StyleBundle("~/Content/angular").Include("~/Scripts/App/Directives/Content/*.css"));
+
 
             bundles.Add(new StyleBundle("~/Content/toastr").Include("~/Content/toastr.css"));
 

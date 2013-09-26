@@ -16,7 +16,5 @@ namespace AngularJS_WebApi_EF.Controllers
             return View();
         }
 
-       
-
     }
 }
