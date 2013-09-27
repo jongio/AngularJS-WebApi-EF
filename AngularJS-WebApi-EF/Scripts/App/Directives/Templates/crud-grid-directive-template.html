@@ -1,4 +1,6 @@
-﻿<table class="crud-grid table table-striped table-bordered table-condensed table-hover">
+﻿<div ng-show="loading">Loading...</div>
+
+<table class="crud-grid table table-striped table-bordered table-condensed table-hover">
     <tr>
         <th class="col-md-1">
             <div class="btn-toolbar"><i class="btn btn-default glyphicon glyphicon-plus" ng-click="toggleAddMode()"></i></div>
@@ -52,3 +54,4 @@
         </td>
     </tr>
 </table>
+

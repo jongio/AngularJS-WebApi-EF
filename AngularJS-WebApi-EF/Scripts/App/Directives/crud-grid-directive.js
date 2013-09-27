@@ -9,6 +9,7 @@
                 $scope.objects = [];
                 $scope.addMode = false;
                 $scope.orderBy = { field: 'Name', asc: true };
+                $scope.loading = true;
 
                 $scope.toggleAddMode = function () {
                     $scope.addMode = !$scope.addMode;
@@ -47,6 +48,7 @@
                 };
 
                 $scope.getData = function (cb) {
+
                     crudGridDataFactory($attrs.tableName).query(function (data) {
                         $scope.objects = data;
                         if (cb) cb();
@@ -58,7 +60,7 @@
                     $scope.orderBy = { field: field, asc: asc };
                 }
 
-                $scope.getData();
+                $scope.getData(function () { $scope.loading = false; });
             }]
     }
 });
