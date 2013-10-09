@@ -12,9 +12,9 @@
 </head>
 <body>
     <h1>People</h1>
-    <div crud-grid table-name='person'></div>
+    <div crud-grid table='person' columns='[{"name":"Id", "class":"col-md-1", "autoincrement": "true"}, {"name":"Name"}]'></div>
     <h1>Places</h1>
-    <div crud-grid table-name='place'></div>
+    <div crud-grid table='place' columns='[{"name":"Id", "class":"col-md-1", "autoincrement": "true"}, {"name":"Name"}]'></div>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/angular")

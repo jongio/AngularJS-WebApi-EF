@@ -5,16 +5,11 @@
         <th class="col-md-1">
             <div class="btn-toolbar"><i class="btn btn-default glyphicon glyphicon-plus" ng-click="toggleAddMode()"></i></div>
         </th>
-        <th class="col-md-1" ng-click="setOrderBy('Id')">
+
+        <th ng-repeat="column in columns" ng-class="column.class" ng-click="setOrderBy(column.name)">
             <div>
-                Id
-                <i class="glyphicon" ng-class="{'glyphicon-sort-by-alphabet': orderBy.asc, 'glyphicon-sort-by-alphabet-alt': !orderBy.asc}" ng-show="orderBy.field == 'Id'"></i>
-            </div>
-        </th>
-        <th ng-click="setOrderBy('Name')">
-            <div>
-                Name
-                <i class="glyphicon" ng-class="{'glyphicon-sort-by-alphabet': orderBy.asc, 'glyphicon-sort-by-alphabet-alt': !orderBy.asc}" ng-show="orderBy.field == 'Name'"></i>
+                {{column.name}}
+                <i class="glyphicon" ng-class="{'glyphicon-sort-by-alphabet': orderBy.asc, 'glyphicon-sort-by-alphabet-alt': !orderBy.asc}" ng-show="orderBy.field == '{{column.name}}'"></i>
             </div>
         </th>
     </tr>
@@ -27,9 +22,8 @@
                 </div>
             </div>
         </td>
-        <td></td>
-        <td>
-            <input ng-model="object.Name" />
+        <td ng-repeat="column in columns">
+            <input ng-model="object[column.name]" ng-show="!column.autoincrement" />
         </td>
     </tr>
     <tr ng-repeat="object in objects | orderBy:orderBy.field:!orderBy.asc">
@@ -47,11 +41,9 @@
                 </div>
             </div>
         </td>
-        <td>{{object.Id}}</td>
-        <td>
-            <span ng-show="object.editMode == null || object.editMode == false">{{object.Name}}</span>
-            <input ng-model="object.Name" ng-show="object.editMode == true" model-change-blur />
+        <td ng-repeat="column in columns">
+            <span ng-show="object.editMode == null || object.editMode == false">{{object[column.name]}}</span>
+            <input ng-model="object[column.name]" ng-show="object.editMode == true" model-change-blur ng-disabled="column.autoincrement" />
         </td>
     </tr>
 </table>
-
