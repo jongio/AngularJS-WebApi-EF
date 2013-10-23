@@ -1,5 +1,8 @@
 ﻿<div ng-show="loading">Loading...</div>
-
+<div class="input-group col-md-4 row">
+    <span class="input-group-addon"><i class="glyphicon glyphicon-filter"></i></span>
+    <input type="text" class="form-control" ng-model="filter">
+</div>
 <table class="crud-grid table table-striped table-bordered table-condensed table-hover">
     <tr>
         <th class="col-md-1">
@@ -26,7 +29,7 @@
             <input ng-model="object[column.name]" ng-show="!column.autoincrement" />
         </td>
     </tr>
-    <tr ng-repeat="object in objects | orderBy:orderBy.field:!orderBy.asc">
+    <tr ng-repeat="object in objects | orderBy:orderBy.field:!orderBy.asc | filter: filter">
         <td>
             <div class="btn-toolbar" ng-show="object.editMode == null || object.editMode == false">
                 <div class="btn-group">
@@ -36,7 +39,7 @@
             </div>
             <div class="btn-toolbar" ng-show="object.editMode == true">
                 <div class="btn-group">
-                    <i class="btn btn-default glyphicon glyphicon-save" ng-click="updateObject(object)"></i>
+                    <i class="btn btn-default glyphicon glyphicon-save" ng-click="toggleEditMode(object);updateObject(object)"></i>
                     <i class="btn btn-default glyphicon glyphicon-remove" ng-click="toggleEditMode(object)"></i>
                 </div>
             </div>

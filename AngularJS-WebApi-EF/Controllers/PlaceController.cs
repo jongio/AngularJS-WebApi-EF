@@ -6,8 +6,9 @@ using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Web;
+using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Description;
 using AngularJS_WebApi_EF.Models;
 
 namespace AngularJS_WebApi_EF.Controllers
@@ -17,95 +18,101 @@ namespace AngularJS_WebApi_EF.Controllers
         private PersonContext db = new PersonContext();
 
         // GET api/Place
-        public IEnumerable<Place> GetPlaces()
+        public IQueryable<Place> GetPlaces()
         {
-            return db.Places.AsEnumerable();
+            return db.Places;
         }
 
         // GET api/Place/5
-        public Place GetPlace(int id)
+        [ResponseType(typeof(Place))]
+        public async Task<IHttpActionResult> GetPlace(int id)
         {
-            Place place = db.Places.Find(id);
+            Place place = await db.Places.FindAsync(id);
             if (place == null)
             {
-                throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.NotFound));
+                return NotFound();
             }
 
-            return place;
+            return Ok(place);
         }
 
         // PUT api/Place/5
-        public HttpResponseMessage PutPlace(int id, Place place)
+        public async Task<IHttpActionResult> PutPlace(int id, Place place)
         {
             if (!ModelState.IsValid)
             {
-                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+                return BadRequest(ModelState);
             }
 
             if (id != place.Id)
             {
-                return Request.CreateResponse(HttpStatusCode.BadRequest);
+                return BadRequest();
             }
 
             db.Entry(place).State = EntityState.Modified;
 
             try
             {
-                db.SaveChanges();
+                await db.SaveChangesAsync();
             }
-            catch (DbUpdateConcurrencyException ex)
+            catch (DbUpdateConcurrencyException)
             {
-                return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
+                if (!PlaceExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
             }
 
-            return Request.CreateResponse(HttpStatusCode.OK);
+            return StatusCode(HttpStatusCode.NoContent);
         }
 
         // POST api/Place
-        public HttpResponseMessage PostPlace(Place place)
+        [ResponseType(typeof(Place))]
+        public async Task<IHttpActionResult> PostPlace(Place place)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                db.Places.Add(place);
-                db.SaveChanges();
+                return BadRequest(ModelState);
+            }
 
-                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, place);
-                response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = place.Id }));
-                return response;
-            }
-            else
-            {
-                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
-            }
+            db.Places.Add(place);
+            await db.SaveChangesAsync();
+
+            return CreatedAtRoute("DefaultApi", new { id = place.Id }, place);
         }
 
         // DELETE api/Place/5
-        public HttpResponseMessage DeletePlace(int id)
+        [ResponseType(typeof(Place))]
+        public async Task<IHttpActionResult> DeletePlace(int id)
         {
-            Place place = db.Places.Find(id);
+            Place place = await db.Places.FindAsync(id);
             if (place == null)
             {
-                return Request.CreateResponse(HttpStatusCode.NotFound);
+                return NotFound();
             }
 
             db.Places.Remove(place);
+            await db.SaveChangesAsync();
 
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException ex)
-            {
-                return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
-            }
-
-            return Request.CreateResponse(HttpStatusCode.OK, place);
+            return Ok(place);
         }
 
         protected override void Dispose(bool disposing)
         {
-            db.Dispose();
+            if (disposing)
+            {
+                db.Dispose();
+            }
             base.Dispose(disposing);
+        }
+
+        private bool PlaceExists(int id)
+        {
+            return db.Places.Count(e => e.Id == id) > 0;
         }
     }
 }
