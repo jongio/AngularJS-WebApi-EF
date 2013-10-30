@@ -60,6 +60,7 @@
 
                 $scope.toggleAddMode = function () {
                     $scope.addMode = !$scope.addMode;
+                    $scope.object = {};
                 };
 
                 $scope.toggleEditMode = function (object) {
@@ -75,7 +76,6 @@
                 var successPostCallback = function (e) {
                     successCallback(e, function () {
                         $scope.toggleAddMode();
-                        $scope.object = {};
                     });
                 };
 
