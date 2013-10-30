@@ -8,7 +8,7 @@
 <table class="crud-grid table table-striped table-bordered table-condensed table-hover">
     <tr>
         <th class="col-md-1">
-            <div class="btn-toolbar"><i class="btn btn-default glyphicon glyphicon-plus" ng-click="toggleAddMode()"></i></div>
+            <div class="btn-toolbar"><i class="btn btn-default glyphicon" ng-class="{'glyphicon-minus': addMode, 'glyphicon-plus': !addMode}" ng-click="toggleAddMode()"></i></div>
         </th>
 
         <th ng-repeat="column in columns" ng-class="column.class" ng-click="setOrderBy(column.name)">
