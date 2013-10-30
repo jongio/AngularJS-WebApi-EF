@@ -20,7 +20,7 @@ namespace AngularJS_WebApi_EF.Controllers
         // GET api/Person
         public IQueryable<Person> GetPeople()
         {
-            return db.People;
+            return db.People.Include(p=> p.Place);
         }
 
         // GET api/Person/5
@@ -48,6 +48,8 @@ namespace AngularJS_WebApi_EF.Controllers
             {
                 return BadRequest();
             }
+
+            person.Place = null;
 
             db.Entry(person).State = EntityState.Modified;
 

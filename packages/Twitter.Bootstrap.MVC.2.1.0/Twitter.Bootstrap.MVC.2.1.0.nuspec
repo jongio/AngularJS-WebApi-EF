@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Twitter.Bootstrap.MVC</id>
+    <version>2.1.0</version>
+    <title>Bootstrap for MVC 5</title>
+    <authors>Chris Kirby</authors>
+    <owners>Chris Kirby</owners>
+    <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
+    <projectUrl>https://github.com/sirkirby/twitter-bootstrap-nuget</projectUrl>
+    <iconUrl>http://blog.getbootstrap.com/public/ico/apple-touch-icon-144-precomposed.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>This package is meant to complement those using the Twitter.Bootstrap library in their MVC 5 application. Upon installation it adds bundling and minification support for easy integration into your shared layouts and views. Issues? Please post them here https://github.com/sirkirby/twitter-bootstrap-nuget/issues</description>
+    <releaseNotes>- new release for Bootstrap v3
+- updated dependencies for MVC 5</releaseNotes>
+    <tags>twitter boostrap mvc mvc5 bundles javascript css</tags>
+    <dependencies>
+      <dependency id="Twitter.Bootstrap" version="3.0.0" />
+      <dependency id="Microsoft.AspNet.Mvc" version="5.0.0" />
+      <dependency id="Microsoft.AspNet.Web.Optimization" version="1.1.1" />
+      <dependency id="WebActivatorEx" version="2.0.3" />
+    </dependencies>
+  </metadata>
+</package>

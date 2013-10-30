@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>FontAwesome</id>
+    <version>4.0.0</version>
+    <authors>Dave Gandy</authors>
+    <owners>Dave Gandy</owners>
+    <licenseUrl>http://fontawesome.io/license/</licenseUrl>
+    <projectUrl>http://fontawesome.io/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Iconic font designed for use with Twitter Bootstrap. 
+The full suite of pictographic icons, examples, and documentation can be found at: http://fontawesome.io</description>
+    <summary>Font Awesome for Twitter Bootstrap - http://fontawesome.io</summary>
+    <releaseNotes>Font Awesome 4.0 
+http://fontawesome.io/whats-new/
+    	
+New Naming Conventions in 4.0
+    -- fa-[name]-[shape]-[o]-[direction]
+    	
+Folder Changes:
+    The following folder changes are in response to issue #1732 https://github.com/FortAwesome/Font-Awesome/issues/1732
+    		
+    -- Folder containing the fonts has been moved from ~/Content/font to ~/Content/fonts to be more inline with the bootstrap package
+    -- CSS files now reside in ~/Content/fontawesome instead of ~/Content</releaseNotes>
+    <tags>FortAwesome FontAwesome Font Awesome Iconic Twitter Bootstrap</tags>
+  </metadata>
+</package>

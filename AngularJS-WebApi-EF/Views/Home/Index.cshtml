@@ -1,21 +1,39 @@
 ﻿<!doctype html>
 <html ng-app="app">
 <head>
-    <title>AngularJS-WebApi-EF</title>
+    <title>AngularJS CRUD Grid - by Jon Gallant (@@jongallant)</title>
     @Styles.Render("~/content/bootstrap/base")
     @Styles.Render("~/content/bootstrap/base")
     @Styles.Render("~/content/toastr")
     @Styles.Render("~/content/css")
     @Styles.Render("~/content/angular")
-
-
 </head>
 <body>
-    <h1>People</h1>
-    <div crud-grid table='person' columns='[{"name":"Id", "class":"col-md-1", "autoincrement": "true"}, {"name":"Name"}]'></div>
-    <h1>Places</h1>
-    <div crud-grid table='place' columns='[{"name":"Id", "class":"col-md-1", "autoincrement": "true"}, {"name":"Name"}]'></div>
+    <div class="container">
+        <div class="row">
+            <h1>People</h1>
+            <div crud-grid table='person' columns='
+                 [{"name":"Id","class":"col-md-1","autoincrement": "true"},
+                 {"name":"Name", "class": "col-md-2"},
+                 {
+                    "name": "PlaceId",
+                    "class": "col-md-1",
+                    "header": "Place",
+                    "lookup":
+                    {
+                        "table": "Place",
+                        "key": "Id",
+                        "value":"Name",
+                        "orderBy": {"field": "Name", "asc": "true"}
+                    }
+                 }]' class="col-md-6"></div>
 
+        </div>
+        <div class="row">
+            <h1>Places</h1>
+            <div crud-grid table='place' columns='[{"name":"Id", "class":"col-md-1", "autoincrement": "true"}, {"name":"Name", "class": "col-md-2"}]' class="col-md-6"></div>
+        </div>
+    </div>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/angular")
     @Scripts.Render("~/bundles/toastr")
