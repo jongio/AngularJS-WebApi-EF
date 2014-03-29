@@ -19,13 +19,18 @@
 
                 $scope.setLookupData = function () {
                     for (var i = 0; i < $scope.columns.length; i++) {
-                        var c = $scope.columns[i];
-                        if (c.lookup && !$scope.hasLookupData(c.lookup.table)) {
-                            crudGridDataFactory(c.lookup.table).query(function (data) {
-                                $scope.setIndividualLookupData(c.lookup.table, data);
-                            });
-                        }
+                        (function(i)
+                        {
+                            var c = $scope.columns[i];
+                            if (c.lookup && !$scope.hasLookupData(c.lookup.table)) {
+                                crudGridDataFactory(c.lookup.table).query(function(data) {
+                                    $scope.setIndividualLookupData(c.lookup.table, data);
+                                });
+                            }
+                        })(i)
+                        ;
                     }
+
                 };
 
                 $scope.resetLookupData = function(table) {
